@@ -191,11 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let i = 1; i <= totalImages; i++) {
                     const slide = document.createElement('div');
                     slide.classList.add('swiper-slide');
-                    slide.style.backgroundImage = `url('images/portfolio/photo (${i}).jpg')`;
+                    slide.style.backgroundImage = `url('images/portfolio/photo (${i}).webp')`;
 
 
                     const img = new Image();
-                    img.src = `images/portfolio/photo (${i}).jpg`;
+                    img.src = `images/portfolio/photo (${i}).webp`;
                     img.onerror = () => {
                         slide.style.backgroundImage = `url('https://placehold.co/640x960/0a0e14/00e676?text=Image+${i}')`;
                         slide.textContent = `Image ${i}`;
@@ -251,10 +251,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let i = 1; i <= totalImages; i++) {
                     const slide = document.createElement('div');
                     slide.classList.add('swiper-slide');
-                    slide.style.backgroundImage = `url('images/portfolio/photo (${i}).jpg')`;
+                    slide.style.backgroundImage = `url('images/portfolio/photo (${i}).webp')`;
 
                     const img = new Image();
-                    img.src = `images/portfolio/photo (${i}).jpg`;
+                    img.src = `images/portfolio/photo (${i}).webp`;
                     img.onerror = () => {
                         slide.style.backgroundImage = `url('https://placehold.co/960x640/0a0e14/00e676?text=Landscape+${i}')`;
                         slide.textContent = `Landscape ${i}`;
