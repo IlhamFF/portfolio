@@ -28,9 +28,12 @@
     <link rel="stylesheet" href="dist/output.css">
 
     <!-- Preload Critical Resources -->
-    <link rel="preload" href="images/hero-background.jpg" as="image">
+    <link rel="preload" href="images/hero-background.webp" as="image" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -351,8 +354,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Video 1: AFTER MOVIE PPG -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/AFTER MOVIE Pembukaan Pembelajaran Pendidikan Profesi Guru (PPG).mp4"
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source
+                                data-src="videos/AFTER MOVIE Pembukaan Pembelajaran Pendidikan Profesi Guru (PPG).mp4"
                                 type="video/mp4">
                         </video>
                         <div
@@ -391,9 +395,9 @@
 
                     <!-- Video 2: WISUDA 137 -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
                             <source
-                                src="videos/AFTER MOVIE WISUDA KE-137 DAY 1 SESI 1  UIN SYARIF HIDAYATULLAH JAKARTA.mp4"
+                                data-src="videos/AFTER MOVIE WISUDA KE-137 DAY 1 SESI 1  UIN SYARIF HIDAYATULLAH JAKARTA.mp4"
                                 type="video/mp4">
                         </video>
                         <div
@@ -432,8 +436,8 @@
 
                     <!-- Video 3: Ararinda -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/Ararinda..mp4" type="video/mp4">
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/Ararinda..mp4" type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
@@ -471,8 +475,8 @@
 
                     <!-- Video 4: Heaven Sent -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/Areeai - Heaven Sent (Official Lyric Video).mp4" type="video/mp4">
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/Areeai - Heaven Sent (Official Lyric Video).mp4" type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
@@ -510,8 +514,8 @@
 
                     <!-- Video 5: Chocodrink 2 -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/Chocodrink 2.mp4" type="video/mp4">
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/Chocodrink 2.mp4" type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
@@ -549,8 +553,8 @@
 
                     <!-- Video 6: Chocodrink 1 -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/chocodrink 1.mp4" type="video/mp4">
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/chocodrink 1.mp4" type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
@@ -588,8 +592,8 @@
 
                     <!-- Video 7: Comprro -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/Comprro.mp4" type="video/mp4">
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/Comprro.mp4" type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
@@ -627,9 +631,9 @@
 
                     <!-- Video 8: Film Pendek -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
                             <source
-                                src="videos/FILM PENDEKMOHAMAD SYAFIQ SATRIOMUHAMMAD ILHAM F.FSMAN 78 JAKARTAJAKARTA BARATDKI JAKARTA.mp4"
+                                data-src="videos/FILM PENDEKMOHAMAD SYAFIQ SATRIOMUHAMMAD ILHAM F.FSMAN 78 JAKARTAJAKARTA BARATDKI JAKARTA.mp4"
                                 type="video/mp4">
                         </video>
                         <div
@@ -668,8 +672,8 @@
 
                     <!-- Video 9: Numb -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/Numb.mp4" type="video/mp4">
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/Numb.mp4" type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
@@ -707,14 +711,14 @@
 
                     <!-- Video 10: Podcast -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/Podcast #CeritaMahasiswa _ Dakwah Ala Gen Z di Media Sosial.mp4"
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/Podcast CeritaMahasiswa _ Dakwah Ala Gen Z di Media Sosial.mp4"
                                 type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
                             <div class="flex-1">
-                                <h3 class="text-lg font-bold mb-2">Podcast #CeritaMahasiswa</h3>
+                                <h3 class="text-lg font-bold mb-2">Podcast CeritaMahasiswa</h3>
                                 <p class="text-gray-300 text-sm mb-3">Dakwah Ala Gen Z di Media Sosial</p>
                                 <a href="https://youtu.be/eaUPvwtbgfM?si=0YKhgSCMEMKApe8Q" target="_blank"
                                     class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md transition-all duration-300 hover:scale-105">
@@ -747,8 +751,8 @@
 
                     <!-- Video 11: Ramadhan After Movie -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/RAMADHAN SERIES 2025 AFTER MOVIE.mp4" type="video/mp4">
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/RAMADHAN SERIES 2025 AFTER MOVIE.mp4" type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
@@ -786,8 +790,8 @@
 
                     <!-- Video 12: Fun Run -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/Semarak Dies Natalis ke-68, UIN Jakarta Gelar Fun Run 2025.mp4"
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/Semarak Dies Natalis ke-68, UIN Jakarta Gelar Fun Run 2025.mp4"
                                 type="video/mp4">
                         </video>
                         <div
@@ -826,8 +830,8 @@
 
                     <!-- Video 13: Ramadhan Teaser -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/TEASER RAMADHAN SERIES 2025 .mp4" type="video/mp4">
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/TEASER RAMADHAN SERIES 2025 .mp4" type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
@@ -865,8 +869,8 @@
 
                     <!-- Video 14: Wisuda 138 -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/Teaser grad si 138.mp4" type="video/mp4">
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/Teaser grad si 138.mp4" type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
@@ -905,8 +909,8 @@
 
                     <!-- Video 15: Wisuda 139 -->
                     <div class="group relative overflow-hidden rounded-xl bg-gray-900 aspect-video" data-anim="fade-up">
-                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline>
-                            <source src="videos/teaser grad 139 6.mp4" type="video/mp4">
+                        <video class="w-full h-full object-cover video-autoplay" muted loop playsinline preload="none">
+                            <source data-src="videos/teaser grad 139 6.mp4" type="video/mp4">
                         </video>
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
@@ -952,8 +956,10 @@
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div class="relative">
                         <div class="snap-glass-effect rounded-lg p-2">
-                            <img src="images/profile.jpg" alt="Ilham Bohlam Profile"
-                                class="rounded-lg w-full h-auto object-cover aspect-[4/5]">
+                            <img src="images/profile.jpg"
+                                alt="Ilham Bohlam - Professional Photographer and Videographer based in Jakarta"
+                                class="rounded-lg w-full h-auto object-cover aspect-[4/5]" width="800" height="1000"
+                                loading="lazy" decoding="async">
                         </div>
                     </div>
                     <div>

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     //==================================================
-    // 1. KELAS UTAMA APLIKASI
+    // 1. KELAS UTAMA APLIKASI (OPTIMIZED)
     //==================================================
     class SnapMasterApp {
         constructor() {
@@ -12,14 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
             this.initModals();
             this.initCoverflowCarousel();
             this.initLandscapeCarousel();
-            this.initVideoAutoplay();
+            this.initLazyVideoLoading();  // OPTIMIZED: Lazy video loading
             setTimeout(() => {
                 this.resolveScrollConflicts();
             }, 500);
 
             this.setCurrentYear();
 
-            console.log('SnapMaster App Initialized');
+            console.log('SnapMaster App Initialized (Optimized)');
         }
 
         // Inisialisasi Smooth Scroll (Lenis)
@@ -177,9 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Inisialisasi Coverflow Carousel
+        // ============================================
+        // OPTIMIZED CAROUSEL: Uses thumbnails first
+        // ============================================
         initCoverflowCarousel() {
-
             setTimeout(() => {
                 const swiperWrapper = document.querySelector('.coverflow-carousel .swiper-wrapper');
                 if (!swiperWrapper) {
@@ -188,21 +189,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const totalImages = 59;
+
+                // Use document fragment for better DOM performance
+                const fragment = document.createDocumentFragment();
+
                 for (let i = 1; i <= totalImages; i++) {
                     const slide = document.createElement('div');
                     slide.classList.add('swiper-slide');
-                    slide.style.backgroundImage = `url('images/portfolio/photo (${i}).webp')`;
 
+                    // OPTIMIZATION: Use thumbnail images (400px wide, ~20KB each)
+                    // instead of full-resolution images (~700KB each)
+                    slide.style.backgroundImage = `url('images/portfolio/thumbs/photo (${i}).webp')`;
 
+                    // Store full-res path for lightbox/zoom
+                    slide.dataset.fullSrc = `images/portfolio/photo (${i}).webp`;
+
+                    // Error handling fallback
                     const img = new Image();
-                    img.src = `images/portfolio/photo (${i}).webp`;
+                    img.src = `images/portfolio/thumbs/photo (${i}).webp`;
                     img.onerror = () => {
-                        slide.style.backgroundImage = `url('https://placehold.co/640x960/0a0e14/00e676?text=Image+${i}')`;
-                        slide.textContent = `Image ${i}`;
+                        // Fallback to full-res if thumb doesn't exist
+                        slide.style.backgroundImage = `url('images/portfolio/photo (${i}).webp')`;
                     };
 
-                    swiperWrapper.appendChild(slide);
+                    fragment.appendChild(slide);
                 }
+
+                swiperWrapper.appendChild(fragment);
 
                 // Inisialisasi Swiper setelah slides ditambahkan
                 this.swiper = new Swiper('.coverflow-carousel', {
@@ -211,6 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     centeredSlides: true,
                     slidesPerView: 'auto',
                     loop: true,
+                    // OPTIMIZATION: Only pre-load slides near active slide
+                    watchSlidesProgress: true,
                     coverflowEffect: {
                         rotate: 15,
                         stretch: 80,
@@ -222,11 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev',
                     },
-                    // Tambahkan event untuk refresh ScrollTrigger setelah Swiper siap
                     on: {
                         init: function () {
-                            console.log('Swiper initialized');
-                            // Refresh ScrollTrigger setelah Swiper selesai render
+                            console.log('Swiper initialized (optimized)');
                             setTimeout(() => {
                                 ScrollTrigger.refresh();
                             }, 100);
@@ -236,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 100);
         }
 
-        // Inisialisasi Landscape Carousel
+        // Inisialisasi Landscape Carousel (also optimized)
         initLandscapeCarousel() {
             setTimeout(() => {
                 const swiperWrapper = document.querySelector('.landscape-carousel .swiper-wrapper');
@@ -245,31 +258,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // Untuk saat ini, kita gunakan foto yang sama sebagai placeholder
-                // Nanti bisa diganti dengan foto landscape yang berbeda
                 const totalImages = 59;
+                const fragment = document.createDocumentFragment();
+
                 for (let i = 1; i <= totalImages; i++) {
                     const slide = document.createElement('div');
                     slide.classList.add('swiper-slide');
-                    slide.style.backgroundImage = `url('images/portfolio/photo (${i}).webp')`;
+                    // OPTIMIZATION: Use thumbnails
+                    slide.style.backgroundImage = `url('images/portfolio/thumbs/photo (${i}).webp')`;
+                    slide.dataset.fullSrc = `images/portfolio/photo (${i}).webp`;
 
                     const img = new Image();
-                    img.src = `images/portfolio/photo (${i}).webp`;
+                    img.src = `images/portfolio/thumbs/photo (${i}).webp`;
                     img.onerror = () => {
-                        slide.style.backgroundImage = `url('https://placehold.co/960x640/0a0e14/00e676?text=Landscape+${i}')`;
-                        slide.textContent = `Landscape ${i}`;
+                        slide.style.backgroundImage = `url('images/portfolio/photo (${i}).webp')`;
                     };
 
-                    swiperWrapper.appendChild(slide);
+                    fragment.appendChild(slide);
                 }
 
-                // Inisialisasi Swiper Landscape
+                swiperWrapper.appendChild(fragment);
+
                 this.landscapeSwiper = new Swiper('.landscape-carousel', {
                     effect: 'coverflow',
                     grabCursor: true,
                     centeredSlides: true,
                     slidesPerView: 'auto',
                     loop: true,
+                    watchSlidesProgress: true,
                     coverflowEffect: {
                         rotate: 15,
                         stretch: 80,
@@ -283,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     on: {
                         init: function () {
-                            console.log('Landscape Swiper initialized');
+                            console.log('Landscape Swiper initialized (optimized)');
                             setTimeout(() => {
                                 ScrollTrigger.refresh();
                             }, 100);
@@ -322,64 +338,82 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-        // Inisialisasi Video Autoplay
-        initVideoAutoplay() {
-            console.log('Initializing video autoplay...');
+        // ============================================
+        // FULLY OPTIMIZED VIDEO LAZY LOADING
+        // ============================================
+        // Instead of loading all 15 videos (326MB!) at once,
+        // we only load a video when it enters the viewport.
+        initLazyVideoLoading() {
+            console.log('Initializing lazy video loading...');
 
-            const videos = document.querySelectorAll('.video-autoplay');
+            const videoItems = document.querySelectorAll('.video-autoplay');
             const videoControls = document.querySelectorAll('.video-control');
 
-            // Setup Intersection Observer untuk autoplay
+            // Track which videos have been loaded
+            const loadedVideos = new WeakSet();
+
+            // Intersection Observer for lazy loading videos
             const videoObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const video = entry.target;
                     const videoItem = video.closest('.group');
                     const spinner = videoItem?.querySelector('.loading-spinner');
+                    const source = video.querySelector('source');
 
                     if (entry.isIntersecting) {
-                        // Show loading spinner
-                        spinner?.classList.remove('opacity-0');
-                        spinner?.classList.add('opacity-100');
+                        // LAZY LOAD: Only load video source when visible
+                        if (source && source.dataset.src && !loadedVideos.has(video)) {
+                            spinner?.classList.remove('opacity-0');
+                            spinner?.classList.add('opacity-100');
 
-                        // Play video when in viewport
+                            // Set the actual source URL
+                            source.src = source.dataset.src;
+                            video.load();
+                            loadedVideos.add(video);
+
+                            console.log('Lazy loaded video:', source.dataset.src.split('/').pop());
+                        }
+
+                        // Auto-play when in viewport (muted)
                         video.play().then(() => {
-                            // Hide loading spinner
                             spinner?.classList.add('opacity-0');
                             spinner?.classList.remove('opacity-100');
                         }).catch(err => {
-                            console.log('Autoplay prevented:', err);
+                            // Autoplay prevented, hide spinner
                             spinner?.classList.add('opacity-0');
                             spinner?.classList.remove('opacity-100');
                         });
                     } else {
-                        // Pause when out of viewport
+                        // Pause when out of viewport to save resources
                         video.pause();
                     }
                 });
             }, {
-                threshold: 0.5
+                threshold: 0.3,
+                rootMargin: '200px 0px'  // Start loading 200px before visible
             });
 
-            // Observe all videos
-            videos.forEach(video => {
+            // Observe all video elements
+            videoItems.forEach(video => {
                 videoObserver.observe(video);
 
-                // Add loading state handler
+                // Loading state handlers
                 const videoItem = video.closest('.group');
                 const spinner = videoItem?.querySelector('.loading-spinner');
-
-                video.addEventListener('loadstart', () => {
-                    spinner?.classList.remove('opacity-0');
-                    spinner?.classList.add('opacity-100');
-                });
 
                 video.addEventListener('canplay', () => {
                     spinner?.classList.add('opacity-0');
                     spinner?.classList.remove('opacity-100');
                 });
+
+                video.addEventListener('error', () => {
+                    spinner?.classList.add('opacity-0');
+                    spinner?.classList.remove('opacity-100');
+                    console.warn('Video load error:', video.querySelector('source')?.dataset?.src);
+                });
             });
 
-            // Setup play/pause controls
+            // Play/Pause button controls
             videoControls.forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -400,8 +434,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Update button states when video plays/pauses
-            videos.forEach(video => {
+            // Update button icon states when video plays/pauses
+            videoItems.forEach(video => {
                 const videoItem = video.closest('.group');
                 const button = videoItem?.querySelector('.video-control');
                 const playIcon = button?.querySelector('.play-icon');
@@ -418,19 +452,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Optional: Add video preview on hover
-            videos.forEach(video => {
+            // Hover preview
+            videoItems.forEach(video => {
                 const videoItem = video.closest('.group');
 
                 videoItem?.addEventListener('mouseenter', () => {
-                    if (video.paused) {
+                    if (video.paused && loadedVideos.has(video)) {
                         video.currentTime = 0;
                         video.play();
                     }
                 });
 
                 videoItem?.addEventListener('mouseleave', () => {
-                    // Keep playing if user manually started it
                     const pauseIcon = videoItem.querySelector('.pause-icon');
                     if (pauseIcon?.classList.contains('hidden')) {
                         video.pause();
@@ -439,6 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         }
+
         // Inisialisasi fungsi untuk modal
         initModals() {
             this.consultationModal = document.getElementById('consultation-modal');

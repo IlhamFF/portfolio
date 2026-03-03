@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output (keep dist/ for deployment)
+# dist/
+
+# Scripts (not needed in production)
+scripts/
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backup files from video compression
+videos/compressed/
+videos/posters/
+videos/originals_backup/
+
+# Original large files (before optimization)
+# Uncomment these after replacing originals with optimized versions:
+# images/hero-background.webp
+# images/profile.webp

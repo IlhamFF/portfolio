@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "optimize:images": "python scripts/optimize_images.py",
+    "optimize:videos": "python scripts/compress_videos.py",
+    "optimize": "npm run optimize:images && npm run optimize:videos"
   },
   "keywords": [],
   "author": "",
